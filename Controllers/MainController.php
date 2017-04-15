@@ -6,6 +6,6 @@ class MainController
 {
     public function index()
     {
-        echo "main page";
+        echo "hello world";
     }
 }
