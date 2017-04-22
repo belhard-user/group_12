@@ -41,6 +41,6 @@ class QueryBuilder
     {
         $sql = "SELECT * FROM {$this->tableName}";
         
-        return $this->db->query($sql)->fetch_all(MYSQLI_ASSOC);
+        return $this->db->query($sql)->fetchAll();
     }
 }
