@@ -17,10 +17,11 @@
             <option value="delete">Удалить</option>
         </select>
         <ul>
+            <?php /** @var \Model\Todo[] $tasks */ ?>
             <?php foreach($tasks as $task): ?>
                 <li>
-                    <input <?= $task['complete'] ? 'checked' : '' ?> type="checkbox" value="<?= $task['id'] ?>" >
-                    <?= $task['title'] ?>
+                    <input <?= $task->getComplete() ? 'checked' : '' ?> type="checkbox" value="<?= $task->getId() ?>" >
+                    <?= $task->getTitle() ?>
                 </li>
             <?php endforeach; ?>
         </ul>

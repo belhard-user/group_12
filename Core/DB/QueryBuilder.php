@@ -6,7 +6,7 @@ class QueryBuilder
     protected $tableName;
 
     /**
-     * @var mysqli
+     * @var \PDO
      */
     private $db;
 
@@ -40,7 +40,21 @@ class QueryBuilder
     public function all()
     {
         $sql = "SELECT * FROM {$this->tableName}";
-        
-        return $this->db->query($sql)->fetchAll();
+        $className = $this->getClassName();
+
+        return $this->db->query($sql)->fetchAll(\PDO::FETCH_CLASS, $className);
+    }
+
+    /**
+     * @return string
+     * @throws \Exception
+     */
+    private function getClassName()
+    {
+        $className = '\Model\\' . ucfirst($this->tableName);
+        if (!class_exists($className)) {
+            throw new \Exception("Model $className not found");
+        }
+        return $className;
     }
 }
